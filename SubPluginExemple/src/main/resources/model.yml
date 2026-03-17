@@ -1,0 +1,5 @@
+name: SubPluginExemple
+version: 1.0
+main: fr.mrqsdf.Main
+authors:
+  - mr_qsdf

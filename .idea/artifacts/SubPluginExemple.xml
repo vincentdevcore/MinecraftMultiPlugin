@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SubPluginExemple">
+    <output-path>$PROJECT_DIR$/out/artifacts/SubPluginExemple</output-path>
+    <root id="archive" name="SubPluginExemple.jar">
+      <element id="module-output" name="MinecraftMultiPlugin.SubPluginExemple.main" />
+      <element id="dir-copy" path="$PROJECT_DIR$/SubPluginExemple/src/main/resources" />
+    </root>
+  </artifact>
+</component>

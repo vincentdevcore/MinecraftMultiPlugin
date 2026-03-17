@@ -1,0 +1,33 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'fr.epistudio'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    compileOnlyApi "fr.olympus-engine:Hephaestus-Engine:1.2.0"
+    compileOnlyApi "fr.olympus-engine:Heracles-Engine:1.1.0"
+    compileOnlyApi "fr.olympus-engine:Prometheus-Engine:1.2.0"
+
+    compileOnly "org.spigotmc:spigot:1.21.11-R0.2-SNAPSHOT"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+//java target version 21
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}

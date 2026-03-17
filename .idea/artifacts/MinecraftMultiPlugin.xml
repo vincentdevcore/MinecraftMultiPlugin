@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MinecraftMultiPlugin">
+    <output-path>$PROJECT_DIR$/out/artifacts/MinecraftMultiPlugin</output-path>
+    <root id="archive" name="MinecraftMultiPlugin.jar">
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
+      <element id="module-output" name="MinecraftMultiPlugin.Api.main" />
+      <element id="module-output" name="MinecraftMultiPlugin.main" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/fr.olympus-engine/Hephaestus-Engine/1.2.0/a235066c9b41b58dcdf97813a168e6007b8a8f31/Hephaestus-Engine-1.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/fr.olympus-engine/Heracles-Engine/1.1.0/79758a75a19e5ec6de9ff32fae3f6bbf5cddfd73/Heracles-Engine-1.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/fr.olympus-engine/Prometheus-Engine/1.2.0/62f3b8a36d4e2ab3c2b91226388e0f36326e31ea/Prometheus-Engine-1.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.classgraph/classgraph/4.8.184/a4f7ddec0f831dcf7ec3db32ae2c7e628c89f1a6/classgraph-4.8.184.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.servlet/jakarta.servlet-api/6.0.0/abecc699286e65035ebba9844c03931357a6a963/jakarta.servlet-api-6.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.ee10/jetty-ee10-servlet/12.1.7/bb25aa1c5cc39f9f42a1a8cd4a1d180d965aff0b/jetty-ee10-servlet-12.1.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-http/12.1.7/56169da55d29a2cd3ba89b6773a6779ecbc8b481/jetty-http-12.1.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-io/12.1.7/886c0555e8c67d144916adb840e7b48a72143e1/jetty-io-12.1.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-security/12.1.7/1f45a5acf7c96a460a249351b70cc5b8f2f4a5ca/jetty-security-12.1.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-server/12.1.7/34a9c55eeef4b19114ce9c1cd92b2699e1406886/jetty-server-12.1.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-session/12.1.7/a8356ba242d59e5f3f41f9662e2918b20916141f/jetty-session-12.1.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-util/12.1.7/dcc5e534f0d5db255787b711ffa1aed853f67cc/jetty-util-12.1.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.17/d9e58ac9c7779ba3bf8142aff6c830617a7fe60f/slf4j-api-2.0.17.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

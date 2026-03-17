@@ -1,0 +1,11 @@
+name: MinecraftMultiPlugin
+version: 1.0
+main: fr.epistudio.mmp.MinecraftMultiPlugin
+api-version: 1.21
+authors:
+  - mr_qsdf
+
+commands:
+  mmp:
+    description: Main command for MinecraftMultiPlugin, displays plugin information and available subcommands.
+    aliases: [minecraftmultip, minecraftmulti, mmp]

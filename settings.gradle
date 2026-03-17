@@ -1,0 +1,3 @@
+rootProject.name = 'MinecraftMultiPlugin'
+include 'Api'
+include 'SubPluginExemple'

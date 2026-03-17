@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de plugin JAR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+    <div class="card">
+        <h1>Upload de fichier JAR</h1>
+        <p class="subtitle">Sélectionne un fichier <code>.jar</code> puis envoie-le au serveur.</p>
+
+        <form id="uploadForm" class="upload-form">
+            <label for="fileInput" class="file-label">Choisir un fichier</label>
+            <input id="fileInput" name="file" type="file" accept=".jar,application/java-archive" required>
+
+            <div id="fileInfo" class="file-info">Aucun fichier sélectionné.</div>
+
+            <button id="submitBtn" type="submit">Envoyer</button>
+        </form>
+
+        <div class="progress-wrapper">
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <div id="progressText" class="progress-text">0%</div>
+        </div>
+
+        <div id="statusBox" class="status hidden"></div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

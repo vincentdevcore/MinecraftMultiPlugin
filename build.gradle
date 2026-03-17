@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group = 'fr.mrqsdf'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+def jettyVersion = '12.1.7'
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation project(":Api")
+
+
+    implementation "fr.olympus-engine:Hephaestus-Engine:1.2.0"
+    implementation "fr.olympus-engine:Heracles-Engine:1.1.0"
+    implementation "fr.olympus-engine:Prometheus-Engine:1.2.0"
+
+    compileOnly "org.spigotmc:spigot:1.21.11-R0.2-SNAPSHOT"
+
+    implementation "org.eclipse.jetty:jetty-server:${jettyVersion}"
+    implementation "org.eclipse.jetty.ee10:jetty-ee10-servlet:${jettyVersion}"
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+//java target version 21
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
