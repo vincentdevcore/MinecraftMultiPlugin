@@ -1,27 +1,109 @@
 package fr.epistudio.mmp.plugin;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import fr.epistudio.mmp.MinecraftMultiPlugin;
+import fr.epistudio.mmp.web.FileData;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.jar.JarFile;
 
 public class PluginLoader {
 
     public static final String API_VERSION = "1.0";               // mise à jour à chaque breaking change
     private static final Path PLUGINS_DIR = Paths.get("plugins/mmplugins");
+    private static final Path UPLOAD_DIR = PLUGINS_DIR.resolve("uploaded-jars");
+    private static final Path FILES_MAP_PATH = UPLOAD_DIR.resolve("files-map.json");
+    private static final Gson GSON = new Gson();
 
     private final PluginManager manager;
 
+
     public PluginLoader(PluginManager manager) { this.manager = manager; }
+    //update plugins files
+    public void updateAll() throws Exception {
+        Files.createDirectories(UPLOAD_DIR);
+        Files.createDirectories(PLUGINS_DIR);
+
+        if (!Files.exists(FILES_MAP_PATH)) {
+            return;
+        }
+
+        String json = Files.readString(FILES_MAP_PATH);
+        Map<String, FileData> files = GSON.fromJson(json, new TypeToken<Map<String, FileData>>() {}.getType());
+
+        if (files == null || files.isEmpty()) {
+            return;
+        }
+
+        for (Map.Entry<String, FileData> entry : files.entrySet()) {
+            String key = entry.getKey();
+            FileData data = entry.getValue();
+
+            if (data == null) {
+                continue;
+            }
+
+            if (data.isDelete()) {
+                Path targetPath = PLUGINS_DIR.resolve(key);
+                try {
+                    Files.deleteIfExists(targetPath);
+                    System.out.println("Fichier supprimé : " + targetPath);
+                } catch (IOException e) {
+                    System.err.println("Erreur lors de la suppression de " + targetPath + " : " + e.getMessage());
+                }
+                continue;
+            }
+
+            String newFileName = data.getNewFileName();
+
+            if (data.isNewFile()) {
+                if (newFileName != null && !newFileName.isBlank()) {
+                    Path sourcePath = UPLOAD_DIR.resolve(newFileName);
+                    Path targetPath = PLUGINS_DIR.resolve(newFileName);
+
+                    try {
+                        Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+                        System.out.println("Fichier ajouté : " + targetPath);
+                    } catch (IOException e) {
+                        System.err.println("Erreur lors de l'ajout de " + targetPath + " : " + e.getMessage());
+                    }
+                }
+                continue;
+            }
+
+            if (newFileName != null && !newFileName.isBlank()) {
+                Path sourcePath = UPLOAD_DIR.resolve(newFileName);
+                Path targetPath = PLUGINS_DIR.resolve(key);
+
+                try {
+                    Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING);
+                    System.out.println("Fichier mis à jour : " + targetPath);
+                } catch (IOException e) {
+                    System.err.println("Erreur lors de la mise à jour de " + targetPath + " : " + e.getMessage());
+                }
+            }
+        }
+        //clear updateFolder
+        try (DirectoryStream<Path> ds = Files.newDirectoryStream(UPLOAD_DIR)) {
+            for (Path jarPath : ds) {
+                try {
+                    Files.deleteIfExists(jarPath);
+                    System.out.println("Fichier temporaire supprimé : " + jarPath);
+                } catch (IOException e) {
+                    System.err.println("Erreur lors de la suppression de " + jarPath + " : " + e.getMessage());
+                }
+            }
+        }
+
+    }
 
     /** Charge tous les plug-ins, gère dépendances et cycle de vie. */
     public void loadAll() throws Exception {
@@ -80,7 +162,7 @@ public class PluginLoader {
             }
 
             try (InputStream in = jar.getInputStream(entry)) {
-                PluginDescription desc = new PluginDescription(in);
+                PluginDescription desc = new PluginDescription(in, jarPath.getFileName().toString());
 
                 // Vérif API
                 if (!API_VERSION.equals(desc.apiVersion)) {

@@ -1,10 +1,12 @@
 package fr.epistudio.mmp.plugin;
 
 import fr.epistudio.mmp.commands.CommandRegister;
+import fr.epistudio.mmp.web.FileData;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /** Enregistre les plug-ins actifs et gère leur cycle de vie. */
 public final class PluginManager {
@@ -44,6 +46,23 @@ public final class PluginManager {
         List<CommandRegister> all = new ArrayList<>();
         for (MMPlugin plugin : plugins) {
             all.addAll(plugin.getCommandRegisters());
+        }
+        return all;
+    }
+
+    public List<PluginDescription> getAllDescriptions() {
+        List<PluginDescription> all = new ArrayList<>();
+        for (PluginContainer pc : containers) {
+            all.add(pc.getDescription());
+        }
+        return all;
+    }
+
+    public Map<String, FileData> getAllFileData() {
+        Map<String, FileData> all = new java.util.concurrent.ConcurrentHashMap<>();
+        for (PluginContainer plugin : containers) {
+            FileData fileData = new FileData(plugin.getDescription().fileName);
+            all.put(plugin.getDescription().fileName, fileData);
         }
         return all;
     }

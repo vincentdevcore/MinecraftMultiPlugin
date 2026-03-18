@@ -1,0 +1,11 @@
+### GET request get plugins information
+GET http://localhost:8080/api/plugins
+
+### return
+#[
+#  {
+#    "name": "SubPluginExemple",
+#    "description": "Aucune description fournie",
+#    "fileName": "SubPluginExemple.jar"
+#  }
+#]

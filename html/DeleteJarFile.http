@@ -1,0 +1,10 @@
+### DELETE request delete a file using prevFile
+DELETE http://localhost:8080/api/delete?prevFile=SubPluginExemple.jar
+Accept: application/json
+
+### return
+#{
+#  "success": true,
+#  "message": "File deleted.",
+#  "file": "prevFile.jar"
+#}

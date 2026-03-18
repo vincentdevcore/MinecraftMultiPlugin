@@ -1,0 +1,13 @@
+### POST request upload a jar file
+POST http://localhost:8080/api/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+Accept: application/json
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="SubPluginExemple.jar"
+Content-Type: application/java-archive
+
+< ./SubPluginExemple.jar
+--WebAppBoundary--
+
+### return

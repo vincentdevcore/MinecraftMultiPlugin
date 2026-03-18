@@ -16,12 +16,14 @@ public final class PluginDescription {
     public final List<String> depends;
     public final String description;
     public final List<String> authors;
+    public final String fileName; // Set by PluginManager when loaded, not from YAML
 
     private static final Pattern DEP_PATTERN =
             Pattern.compile("^\\s*([\\w-]+)(?:\\s*>=\\s*([\\d.]+))?\\s*$");
 
     @SuppressWarnings("unchecked")
-    public PluginDescription(InputStream yamlStream) {
+    public PluginDescription(InputStream yamlStream, String fileName) {
+        this.fileName = fileName;
         Map<String, Object> map = new Yaml().load(yamlStream);
         name       = (String) map.get("name");
         main = (String) map.get("main");

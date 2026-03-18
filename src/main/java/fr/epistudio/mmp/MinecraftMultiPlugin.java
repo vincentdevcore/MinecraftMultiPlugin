@@ -3,7 +3,8 @@ package fr.epistudio.mmp;
 import fr.epistudio.mmp.commands.PluginCommands;
 import fr.epistudio.mmp.plugin.PluginLoader;
 import fr.epistudio.mmp.plugin.PluginManager;
-import fr.epistudio.mmp.upload.JettyUploadServer;
+import fr.epistudio.mmp.web.FileData;
+import fr.epistudio.mmp.web.JettyUploadServer;
 import fr.olympus.hephaestus.Hephaestus;
 import fr.olympus.hephaestus.register.RegisterType;
 import fr.olympus.hephaestus.resources.HephaestusData;
@@ -14,8 +15,7 @@ import fr.olymus.heracles.resources.HeraclesData;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Map;
 
 public class MinecraftMultiPlugin extends JavaPlugin implements MinecraftMultiPluginApi {
 
@@ -29,6 +29,7 @@ public class MinecraftMultiPlugin extends JavaPlugin implements MinecraftMultiPl
     private Heracles heracles;
 
     private JettyUploadServer jettyUploadServer;
+    private Map<String, FileData> uploadedFiles = new java.util.concurrent.ConcurrentHashMap<>();
 
     public MinecraftMultiPlugin() throws Exception {
 
@@ -63,10 +64,13 @@ public class MinecraftMultiPlugin extends JavaPlugin implements MinecraftMultiPl
 
         PluginLoader loader = new PluginLoader(manager);
         try {
+            loader.updateAll();
             loader.loadAll();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        uploadedFiles = manager.getAllFileData();
 
         manager.load();
 
@@ -74,7 +78,6 @@ public class MinecraftMultiPlugin extends JavaPlugin implements MinecraftMultiPl
 
     @Override
     public void onEnable() {
-
 
 
         Bukkit.getPluginCommand("mmp").setExecutor(new PluginCommands());
@@ -140,5 +143,9 @@ public class MinecraftMultiPlugin extends JavaPlugin implements MinecraftMultiPl
     @Override
     public void HeraclesAutoRegister(fr.olymus.heracles.register.RegisterType type, String... args) {
         Heracles.autoRegister(type, args);
+    }
+
+    public Map<String, FileData> getUploadedFiles() {
+        return uploadedFiles;
     }
 }

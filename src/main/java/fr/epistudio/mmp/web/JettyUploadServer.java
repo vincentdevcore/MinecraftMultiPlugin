@@ -1,4 +1,4 @@
-package fr.epistudio.mmp.upload;
+package fr.epistudio.mmp.web;
 
 import jakarta.servlet.MultipartConfigElement;
 import org.eclipse.jetty.ee10.servlet.DefaultServlet;
@@ -42,6 +42,12 @@ public final class JettyUploadServer {
                 )
         );
         context.addServlet(uploadServlet, "/api/upload");
+
+        ServletHolder getPluginsServlet = new ServletHolder(new GetPluginServlet());
+        context.addServlet(getPluginsServlet, "/api/plugins");
+
+        ServletHolder deletePluginServlet = new ServletHolder(new DeletePluginServlet());
+        context.addServlet(deletePluginServlet, "/api/delete");
 
         server.setHandler(context);
 
