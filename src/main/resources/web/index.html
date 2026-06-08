@@ -1,37 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload de plugin JAR</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="page">
-    <div class="card">
-        <h1>Upload de fichier JAR</h1>
-        <p class="subtitle">Sélectionne un fichier <code>.jar</code> puis envoie-le au serveur.</p>
-
-        <form id="uploadForm" class="upload-form">
-            <label for="fileInput" class="file-label">Choisir un fichier</label>
-            <input id="fileInput" name="file" type="file" accept=".jar,application/java-archive" required>
-
-            <div id="fileInfo" class="file-info">Aucun fichier sélectionné.</div>
-
-            <button id="submitBtn" type="submit">Envoyer</button>
-        </form>
-
-        <div class="progress-wrapper">
-            <div class="progress-bar">
-                <div id="progressFill" class="progress-fill"></div>
-            </div>
-            <div id="progressText" class="progress-text">0%</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/root.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <script src="./app.js" defer></script>
+    <title>Plugins Minecraft</title>
+  </head>
+  <body>
+    <h1>Plugins Minecraft</h1>
+    <section class="box">
+      <article class="explication">
+        <h2 class="title">Comment ca marche ?</h2>
+        <div>
+          <h3 class="subtitle">Upload d’un plugin :</h3>
+          <p>
+            Cliquez sur Upload sans sélectionner de plugin existant pour ajouter
+            un nouveau fichier .jar. Si un plugin avec un nom similaire existe
+            déjà, le système pourra automatiquement le renommer si nécessaire.
+          </p>
         </div>
-
-        <div id="statusBox" class="status hidden"></div>
+        <div>
+          <h3 class="subtitle">Mise à jour d’un plugin :</h3>
+          <p>
+            Sélectionnez un plugin déjà installé, puis utilisez Upload pour
+            remplacer ou mettre à jour le fichier existant. Le système mettra à
+            jour le plugin sélectionné, même si le nom du nouveau fichier est
+            différent.
+          </p>
+        </div>
+        <h3 class="subtitle">Suppression d'un plugin :</h3>
+        <p>
+          Cliquez sur Delete pour supprimer définitivement le plugin sélectionné
+          de la liste.
+        </p>
+      </article>
+    </section>
+    <div class="btn">
+      <button class="action upload" id="upload">Upload</button>
+      <button class="action voir" id="voir">Voir les plugins</button>
     </div>
-</div>
-
-<script src="app.js"></script>
-</body>
+    <section class="box plugins">
+      <h2 class="title">Plugins installés</h2>
+      <div id="plugins-container"></div>
+    </section>
+  </body>
 </html>

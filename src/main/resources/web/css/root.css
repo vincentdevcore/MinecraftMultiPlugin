@@ -1,0 +1,29 @@
+:root {
+  /*---BTN---*/
+  --btn-upload: #ab734d;
+  --btn-voir-plugins: #236bb5;
+  --btn-update: #d2a443;
+  --btn-delete: #ad2929;
+  --border-radius-btn: 10px;
+
+  /*---Color---*/
+
+  --color-green: #95ff00;
+  --color-text-primary: #ffffff;
+  --color-title: #ffffff;
+  --color-subtitle: #ffffff;
+
+  /*---style---*/
+
+  --border: 2px solid rgba(255, 255, 255, 0.12);
+  --border-radius-box: 20px;
+  --background-box: rgba(20, 30, 45, 0.55);
+
+  --box-shadows: 10px 5px 5px #121212;
+  --text-shadows: black 3px 3px;
+
+  /*---Fonts---*/
+
+  --font-minecraft-alt: "MinecraftAlt", sans-serif;
+  --font-minecraft-reg: "MinecraftReg", sans-serif;
+}
